@@ -1,0 +1,17 @@
+{
+    "name": "roman/core-site-php",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app",
+            "Core\\": "core"
+        }
+    },
+    "authors": [
+        {
+            "name": "Roman-cpp",
+            "email": "rom.arlamov2017@yandex.ru"
+        }
+    ],
+    "require": {}
+}
