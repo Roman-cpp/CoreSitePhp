@@ -13,5 +13,7 @@
             "email": "rom.arlamov2017@yandex.ru"
         }
     ],
-    "require": {}
+    "require": {
+        "pusher/pusher-php-server": "^7.2"
+    }
 }
