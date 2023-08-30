@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Servises;
+namespace App\Services;
 
 class Dom
 {
