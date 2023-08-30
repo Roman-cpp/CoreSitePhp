@@ -1,9 +1,15 @@
 <?php
-require_once __DIR__ . '/../vendor/autoload.php';
+echo 5;
+$pdo = new PDO('mysql:host=db;dbname=test', 'sail', 'password');
 
-use Core\Domd;
+$stmt = $pdo->query('SELECT * FROM users');
 
-echo __DIR__ . '/vendor/autoload.php';
-echo 'php123';
+while ($row = $stmt->fetch()) {
+  echo $row['name'];
+}
+// require_once __DIR__ . '/vendor/autoload.php';
 
-(new Domd())->dd();
+// use App\Servises\Dom;
+
+// echo __DIR__ . '/vendor/autoload.php';
+// echo 'php123';
