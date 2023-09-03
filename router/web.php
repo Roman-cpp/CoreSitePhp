@@ -1,7 +1,7 @@
 <?php
 
 use App\Controller\CatController;
-use App\controller\HomeController;
+use App\Controller\HomeController;
 use App\Controller\UserController;
 use Core\Route;
 

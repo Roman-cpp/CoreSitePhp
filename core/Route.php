@@ -1,65 +1,38 @@
 <?php
 namespace Core;
-use App\Controller\CatController;
-use App\Controller\HomeController;
-use App\Controller\UserController;
+use Core\Error;
 
 class Route {
 
-    private $ROUTE = [
-        'home' => [
-            'controller' => HomeController::class,
-            'method' => 'index',
-            'child' => [
-                'user' => [
-                    'controller' => UserController::class,
-                    'method' => 'index',
-                    'child' => [
-                        'dom' => [
-                            'controller' => CatController::class,
-                            'method' => 'index',
-                            'child' => [],
-                        ],
-                    ],
-                ]
-            ],
-        ],
-        'user' => [
-            'controller' => UserController::class,
-            'method' => 'index',
-            'child' => [],
-        ],
-        'dom' => [
-            'controller' => CatController::class,
-            'method' => 'index',
-            'child' => [],
-        ],
-    ];
-
-    private array $route = [];
-
+    private static $ROUTE = [];
+    private int $routeСomplexity = 0;
     static function get($url, $controller)
     {
-
+        self::$ROUTE[$url] = [
+            'controller' => $controller[0],
+            'method' => $controller[1],
+            'child' => [],
+        ];
     }
 
-    static function post()
+    static function post($url, $controller)
     {
-
+        self::$ROUTE[$url] = [
+            'controller' => $controller[0],
+            'method' => $controller[1],
+            'child' => [],
+        ];
     }
-
-    private int $counter = 0;
-
     public function routeProcessing(array $url, array $ROUTE = null)
     {
         if(!isset($ROUTE)) {
-            $ROUTE = $this->ROUTE;
+            $ROUTE = self::$ROUTE;
         }
         
         foreach ( $ROUTE as $key => $array) {
-            if($url[$this->counter] === $key) {
-                if(count($url) === $this->counter + 2) {
-                    $this->counter++;
+            if($url[$this->routeСomplexity] === $key) {
+                if(count($url) === $this->routeСomplexity + 2) {
+                    $this->routeСomplexity++;
                     return $this->routeProcessing( $url, $array['child']);
                 } else {
                     $classController = new $array['controller'];
@@ -73,6 +46,6 @@ class Route {
             }
         }
 
-        echo '404';
+        Error::error404();
     }
 }

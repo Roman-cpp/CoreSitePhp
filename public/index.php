@@ -1,14 +1,23 @@
 <?php
+use Core\Route;
 
 require_once __DIR__ . '/../vendor/autoload.php';
+$route = new Route();
+require_once __DIR__ . '/../router/web.php';
 
-use Core\Route;
+
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 $segments = explode('/', trim($uri, '/'));
 
+
+
+
+//dd($segments);
+// (new Route())->routeCaching();
 (new Route())->routeProcessing($segments);
+
 
 
 
