@@ -6,7 +6,7 @@ class HomeController
 {
     public function index()
     {
-        dd('dsf');
+        dd('home');
         return '<dev>hello home</dev>';
     }
 }

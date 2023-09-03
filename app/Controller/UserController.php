@@ -6,7 +6,7 @@ class UserController
 {
     public function index(): string
     {
-        dd('<dev>hello user</dev>');
+        dd('user');
         return '<dev>hello user</dev>';
     }
 }
