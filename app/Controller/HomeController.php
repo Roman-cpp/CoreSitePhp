@@ -1,11 +1,12 @@
 <?php
 
-namespace App\controller;
+namespace App\Controller;
 
 class HomeController
 {
-    public function index(): string
+    public function index()
     {
+        dd('dsf');
         return '<dev>hello home</dev>';
     }
 }

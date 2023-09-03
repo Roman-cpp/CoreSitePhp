@@ -1,5 +1,8 @@
 <?php
 namespace Core;
+use App\Controller\CatController;
+use App\Controller\HomeController;
+use App\Controller\UserController;
 
 class Route {
 
@@ -7,7 +10,19 @@ class Route {
         'home' => [
             'controller' => HomeController::class,
             'method' => 'index',
-            'child' => [],
+            'child' => [
+                'user' => [
+                    'controller' => UserController::class,
+                    'method' => 'index',
+                    'child' => [
+                        'dom' => [
+                            'controller' => CatController::class,
+                            'method' => 'index',
+                            'child' => [],
+                        ],
+                    ],
+                ]
+            ],
         ],
         'user' => [
             'controller' => UserController::class,
@@ -35,27 +50,29 @@ class Route {
 
     private int $counter = 0;
 
-    public function routeProcessing(array $url)
+    public function routeProcessing(array $url, array $ROUTE = null)
     {
-        foreach ( $this->ROUTE as $key => $array) {
-            if($url[$this->counter] == $key) {
-
-                if($url[$this->counter + 1]) {
+        if(!isset($ROUTE)) {
+            $ROUTE = $this->ROUTE;
+        }
+        
+        foreach ( $ROUTE as $key => $array) {
+            if($url[$this->counter] === $key) {
+                if(count($url) === $this->counter + 2) {
                     $this->counter++;
-                    return $this->routeProcessing($array['child'], $url);
+                    return $this->routeProcessing( $url, $array['child']);
                 } else {
-                    $class = new $array['controller'];
+                    $classController = new $array['controller'];
+                    
+                    $functionController = $array['method'];
 
-                    $function = $array['method'];
-
-                    //установка языка на котором будут показываться новости
-                    //$class->$function(UserData::userLanguage());
+                    $classController->$functionController();
 
                     return 0;
                 }
             }
         }
-        print_r($url);
+
         echo '404';
     }
 }
