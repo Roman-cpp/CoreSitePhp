@@ -8,7 +8,7 @@ class UserController
     public function index(): string
     {
         DB::showTable('users');
-        dd('user');
+        dd('user', $_ENV['DB_USERNAME']);
         return '<dev>hello user</dev>';
     }
 }

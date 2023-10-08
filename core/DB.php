@@ -9,7 +9,11 @@ class DB
 
     private static function initializeConnection()
     {
-        self::$dbConnection = new PDO('mysql:host=db;dbname=test', 'sail', 'password');
+        self::$dbConnection = new PDO(
+            'mysql:host=' . $_ENV['DB_HOST'] . ';dbname='  . $_ENV['DB_DATABASE'],
+            $_ENV['DB_USERNAME'],
+            $_ENV['DB_PASSWORD']
+        );
     }
 
     private static function isDBConnection(): bool

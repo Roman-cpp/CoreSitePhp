@@ -13,5 +13,8 @@
             "email": "rom.arlamov2017@yandex.ru"
         }
     ],
-    "require": {}
+    "require": {
+        "symfony/var-dumper": "^6.3",
+        "symfony/dotenv": "^6.3"
+    }
 }
