@@ -2,11 +2,14 @@
 
 namespace App\Controller;
 
+use Core\Controller\Trait\View;
+
 class CatController
 {
-    public function index(): string
+    use View;
+    
+    public function index()
     {
-        dd('cat');
-        return '<dev>hello cat</dev>';
+        return $this->view( 'cat.index');
     }
 }

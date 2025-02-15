@@ -10,10 +10,10 @@ class UserController
     use View;
     public function index()
     {
-        echo 3;
-        //DB::showTable('users');
+        // echo 3;
+        // DB::showTable('users');
         //dd('user', $_ENV['DB_USERNAME']);
-        echo '<dev>hello user</dev>';
-        return $this->view('index', ['user' => 'tom']);
+        // echo '<dev>hello user</dev>';
+        return $this->view( 'user.index', ['user' => 'Tom']);
     }
 }

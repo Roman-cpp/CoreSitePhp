@@ -2,11 +2,14 @@
 
 namespace App\Controller;
 
+use Core\Controller\Trait\View;
+
 class HomeController
 {
+    use View;
+
     public function index()
     {
-        dd('home');
-        return '<dev>hello home</dev>';
+        return $this->view( 'home.index');
     }
 }
